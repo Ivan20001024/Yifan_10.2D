@@ -1,29 +1,18 @@
 steps:
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/${PROJECT_ID}/node-web-app:$COMMIT_SHA', '.']
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["build", "-t", "gcr.io/${PROJECT_ID}/node-web-app:$COMMIT_SHA", "."]
 
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "gcr.io/${PROJECT_ID}/node-web-app:$COMMIT_SHA"]
 
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/${PROJECT_ID}/node-web-app:$COMMIT_SHA']
-
-
-- name: 'gcr.io/cloud-builders/kubectl'
-  args: ['set', 'image', 'deployment/mydeployment', 'mynode=gcr.io//node-web-app:$COMMIT_SHA']
-  env:
-  - 'CLOUDSDK_COMPUTE_ZONE=us-west1'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=steps:
-# Build Docker Image
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/${PROJECT_ID}/node-web-app:$COMMIT_SHA', '.']
-
-
-# Docker Push
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/${PROJECT_ID}/node-web-app:$COMMIT_SHA']
-
-
-- name: 'gcr.io/cloud-builders/kubectl'
-  args: ['set', 'image', 'deployment/mydeployment', 'mynode=gcr.io/careful-aleph-388411/node-web-app:$COMMIT_SHA']
-  env:
-  - 'CLOUDSDK_COMPUTE_ZONE=us-west1'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=autopilot-cluster-1'
+  - name: "gcr.io/cloud-builders/kubectl"
+    args:
+      [
+        "set",
+        "image",
+        "deployment/mydeployment",
+        "mynode=gcr.io/careful-aleph-388411/node-web-app:$COMMIT_SHA",
+      ]
+    env:
+      - "CLOUDSDK_COMPUTE_ZONE=us-west1"
+      - "CLOUDSDK_CONTAINER_CLUSTER=autopilot-cluster-1"
