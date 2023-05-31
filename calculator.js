@@ -22,7 +22,7 @@ const div=(n1,n2)=>{
 }
 
 app.get("/cal",(req,res)=>{ 
-    res.send("I have made aaaabb changes.");
+    res.send("I have made aaaabbbbb changes.");
 try{
     const act = req.query.act;
     const n1=parseFloat(req.query.n1);
