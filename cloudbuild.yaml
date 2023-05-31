@@ -11,7 +11,7 @@ steps:
         "set",
         "image",
         "deployment/mydeployment",
-        "mynode=gcr.io/sit-faisal-alam-dc41412/node-web-app:$COMMIT_SHA",
+        "mynode=gcr.io/careful-aleph-388411/node-web-app:$COMMIT_SHA",
       ]
     env:
       - "CLOUDSDK_COMPUTE_ZONE=us-west1"
